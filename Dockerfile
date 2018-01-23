@@ -12,17 +12,8 @@ RUN apt-get update && apt-get install -yq libmysqlclient-dev
 #RUN cd mysql-connector-c-6.1.11-src ; cmake -DCMAKE_BUILD_TYPE=Debug ; make ; make install
 
 
-RUN git clone https://github.com/isc-projects/kea.git /opt/kea && cd /opt/kea && git checkout v1_3_0
-RUN cd /opt/kea && autoreconf --install
-RUN cd /opt/kea && ./configure --with-dhcp-mysql --enable-debug  --enable-static-link    --enable-shell 
-RUN cd /opt/kea && make
-RUN cd /opt/kea && make install
-
-
 #RUN cp /opt/kea/src/lib/dhcp/.libs/libkea-dhcp++.so.4 /lib/
 #RUN cp /opt/kea/src/lib/asiolink/.libs/libkea-asiolink.so.3 /lib/
 #RUN cp /opt/kea/src/lib/exceptions/.libs/libkea-exceptions.so.0 /lib/
 
-RUN rm /etc/apt/apt.conf.d/01proxy
-
-
+COPY get-and-compile.sh /bin/
