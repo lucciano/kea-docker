@@ -1,5 +1,5 @@
 build:
-	docker build -t dev .
+	docker build -t kea-dev .
 
 run:
-	docker run -it --rm -v $(pwd)/src/:/opt/kea dev /bin/get-and-compile.sh
+	docker run -it --rm -v $(CURDIR)/src/:/opt/kea kea-dev /bin/get-and-compile.sh
